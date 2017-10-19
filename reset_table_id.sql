@@ -1,0 +1,1 @@
+﻿DBCC CHECKIDENT('SettlementPositions', RESEED, 0);
