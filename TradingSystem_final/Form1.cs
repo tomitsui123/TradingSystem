@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
+using Novacode;
+using System.Diagnostics;
 
-using System.IO;
-using iTextSharp.text;
-using iTextSharp.text.pdf; 
 
 namespace TradingSystem_final
 {
@@ -39,7 +32,7 @@ namespace TradingSystem_final
             // TODO: 這行程式碼會將資料載入 'database1DataSet3.Account' 資料表。您可以視需要進行移動或移除。
             this.accountTableAdapter1.Fill(this.database1DataSet3.Account);
             String sql = "select * from Account where valid = 1";
-            DataTable dt = commonFunction.getSqlData(sql);
+            System.Data.DataTable dt = commonFunction.getSqlData(sql);
             CustomerAccountTable.DataSource = dt;
             if (CustomerAccountTable.Rows.Count != 0)
             {
@@ -91,6 +84,7 @@ namespace TradingSystem_final
                 selectedCustomer["balance"] = balance;
                 BalanceAmount.Text = balance;
 
+
                 reloadOpenPosition(accountId);
                 reloadSettlementPositions(accountId);
                 enableButton();
@@ -104,7 +98,7 @@ namespace TradingSystem_final
             if (dialogResult == DialogResult.OK)
             {
                 String sql = "select * from OpenPosition where valid = 1 and Account_id=" + selectedCustomer["id"];
-                DataTable dt = commonFunction.getSqlData(sql);
+                System.Data.DataTable dt = commonFunction.getSqlData(sql);
                 OpenPosition.DataSource = dt;
                 commonFunction.updateBalance(insertNewOrder.balance, Convert.ToInt32(selectedCustomer["id"]));
                 reloadCustomerAccount();
@@ -162,7 +156,6 @@ namespace TradingSystem_final
                     buyPrice = Convert.ToInt32(dataFromChild["price"]);
                     sellPrice = Convert.ToInt32(selectedOpenedPosition["price"]);
                     profitLoss = commonFunction.createProfitLoss(buyPrice, sellPrice, inputLots, exchangeRate);
-                    commonFunction.changeProfitLoss(profitLoss, id);
                     netProfit = Convert.ToDouble(profitLoss) - Convert.ToInt32(commission);
                     commonFunction.CreateSettlementPosition(selectedCustomer["id"], dataFromChild["lots"], dataFromChild["oppositeDate"],
                         dataFromChild["price"], selectedOpenedPosition["date"], selectedOpenedPosition["price"], commission, netProfit, interest.ToString(), selectedOpenedPosition["id"]);
@@ -171,7 +164,6 @@ namespace TradingSystem_final
                     buyPrice = Convert.ToInt32(selectedOpenedPosition["price"]);
                     sellPrice = Convert.ToInt32(dataFromChild["price"]);
                     profitLoss = commonFunction.createProfitLoss(buyPrice, sellPrice, inputLots, exchangeRate);
-                    commonFunction.changeProfitLoss(profitLoss, id);
                     netProfit = Convert.ToDouble(profitLoss) - Convert.ToInt32(commission);
                     commonFunction.CreateSettlementPosition(selectedCustomer["id"], dataFromChild["lots"], selectedOpenedPosition["date"], selectedOpenedPosition["price"],
                         dataFromChild["oppositeDate"], dataFromChild["price"], commission, netProfit, interest.ToString(), selectedOpenedPosition["id"]);
@@ -202,7 +194,7 @@ namespace TradingSystem_final
         private void reloadCustomerAccount()
         {
             String sql = "select * from Account where valid = 1";
-            DataTable dt = commonFunction.getSqlData(sql);
+            System.Data.DataTable dt = commonFunction.getSqlData(sql);
             CustomerAccountTable.DataSource = dt;
         }
 
@@ -214,7 +206,7 @@ namespace TradingSystem_final
             {
                 sql = sql + " and Account_id = " + id;
             }
-            DataTable dt = commonFunction.getSqlData(sql);
+            System.Data.DataTable dt = commonFunction.getSqlData(sql);
             OpenPosition.DataSource = dt;
         }
 
@@ -226,7 +218,7 @@ namespace TradingSystem_final
                 id = "-1";
             }
             sql = sql + " and Account_id = " + id;
-            DataTable dt = commonFunction.getSqlData(sql);
+            System.Data.DataTable dt = commonFunction.getSqlData(sql);
             SettlementPositions.DataSource = dt;
         }
 
@@ -235,6 +227,8 @@ namespace TradingSystem_final
             NewOrder.Enabled = true;
             BtnOpenPositionClear.Enabled = true;
             BtnDepositWithdraw.Enabled = true;
+            closeAccountToolStripMenuItem.Enabled = true;
+            OneStatement.Enabled = true;
         }
 
         private void BtnSettlemenePositionClear_Click(object sender, EventArgs e)
@@ -263,7 +257,7 @@ namespace TradingSystem_final
                 selectedSettlementPosition["interest"] = SettlementPositions.Rows[e.RowIndex].Cells[8].Value.ToString();
                 selectedSettlementPosition["profit"] = SettlementPositions.Rows[e.RowIndex].Cells[9].Value.ToString();
                 selectedSettlementPosition["OpenPosition_id"] = SettlementPositions.Rows[e.RowIndex].Cells[10].Value.ToString();
-                DataTable openPosition = commonFunction.getSqlData("select * from OpenPosition where id = " + selectedSettlementPosition["OpenPosition_id"]);
+                System.Data.DataTable openPosition = commonFunction.getSqlData("select * from OpenPosition where id = " + selectedSettlementPosition["OpenPosition_id"]);
                 selectedOpenedPosition["id"] = openPosition.Rows[0].ItemArray[0].ToString();
                 selectedOpenedPosition["date"] = openPosition.Rows[0].ItemArray[2].ToString().Trim();
                 selectedOpenedPosition["lots"] = openPosition.Rows[0].ItemArray[3].ToString();
@@ -288,6 +282,8 @@ namespace TradingSystem_final
                     MessageBox.Show("Account does not have enough balance.");
                 } else
                 {
+                    selectedCustomer["balance"] = (currentAmount + change).ToString();
+                    commonFunction.depositWithdrawalBalance(withdrawDeposit.action, change, Convert.ToInt32(selectedCustomer["id"]));
                     commonFunction.changeBalance(currentAmount + change, Convert.ToInt32(selectedCustomer["id"]));
                     reloadCustomerAccount();
                 }
@@ -317,21 +313,14 @@ namespace TradingSystem_final
 
         private void OneStatement_Click(object sender, EventArgs e)
         {
-            Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
-            String output = "one_statement.pdf";
-            PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream(output, FileMode.Create));
-            doc.Open();
-
-            String path = "./replacetest.txt";
-            string text = File.ReadAllText(path);
-            text = text.Replace("<replaceMe>", "new value");
-            File.WriteAllText("replacetest.txt", text);
-            StreamReader rdr = new StreamReader(path);
-            doc.Add(new Paragraph(rdr.ReadToEnd()));
-            rdr.Close();
-            doc.Close();
-            System.Diagnostics.Process.Start(output);
-            
+            ClosingPriceForm closingPriceForm = new ClosingPriceForm();
+            DialogResult dialogResult = closingPriceForm.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                commonFunction.changeOPProfitLoss(closingPriceForm.closingPrice, selectedCustomer["id"]);
+                reloadOpenPosition(selectedCustomer["id"]);
+                prepareStatement(closingPriceForm.closingPrice, "./simpleStatement.docx");
+            }
         }
 
         private void BtnSettlemenePositionUp_Click(object sender, EventArgs e)
@@ -404,6 +393,8 @@ namespace TradingSystem_final
                 reloadCustomerAccount();
                 reloadOpenPosition(selectedCustomer["id"]);
                 reloadSettlementPositions(selectedCustomer["id"]);
+                TotalAmount.Text = commonFunction.getCount("Account").ToString();
+                BalanceAmount.Text = "0";
             }
         }
 
@@ -414,17 +405,151 @@ namespace TradingSystem_final
             if (dialogResult == DialogResult.OK)
             {
                 reloadCustomerAccount();
+                TotalAmount.Text = commonFunction.getCount("Account").ToString();
             }
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void setMyButtonIcon()
         {
             BtnSettlemenePositionUp.Image = System.Drawing.Image.FromFile("C:\\Graphics\\My.ico");
+        }
+
+        private void simpleStatementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            prepareStatement(300, "./simpleStatement.docx");
+        }
+
+        public void prepareStatement(int closingPrice, String path)
+        {
+            //Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
+            //String output = "one_statement.pdf";
+            //PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream(output, FileMode.Create));
+            //doc.Open();
+
+            int totalFloating = 0;
+            int totalCommission = 0;
+            int totalInterest = 0;
+            int totalProfitLoss = 0;
+            DocX docx = DocX.Load(path);
+            System.Data.DataTable dataTable = commonFunction.getSqlData("SELECT name, value FROM RatesSetting " +
+                "WHERE name in ('Address', 'CompanyName', 'Fax', 'Tel', 'ExchangeRate') ORDER BY name");
+            Dictionary<String, String> config = new Dictionary<string, string>();
+            foreach (DataRow row in dataTable.Rows)
+            {
+                config[row["name"].ToString().Trim()] = row["value"].ToString();
+            }
+            docx.ReplaceText("<COMPANY_NAME_H>", config["CompanyName"]);
+            docx.ReplaceText("<COMPANY_NAME_S>", config["CompanyName"]);
+            docx.ReplaceText("<Address>", config["Address"]);
+            docx.ReplaceText("<TEL_NUMBER>", config["Tel"]);
+            docx.ReplaceText("<FAX_NUMBER>", config["Fax"]);
+            docx.ReplaceText("<RATE>", config["ExchangeRate"]);
+
+            dataTable = commonFunction.getSqlData("SELECT a.Name, a.AccountNo, SUBSTRING(CONVERT(varchar(10), " +
+                "a.AccountNo), 2, 100) as 'AE_CODE', convert(varchar, getdate(), 101) AS 'DD/MM/YYYY' FROM Account a");
+            docx.ReplaceText("<ACCOUNT_NO>", dataTable.Rows[0]["AccountNo"].ToString());
+            docx.ReplaceText("<DD/MM/YY>", dataTable.Rows[0]["DD/MM/YYYY"].ToString());
+            docx.ReplaceText("<AE_CODE>", dataTable.Rows[0]["AE_CODE"].ToString());
+            docx.ReplaceText("<NAME>", dataTable.Rows[0]["Name"].ToString());
+            docx.ReplaceText("<PAGE>", "1");
+
+
+            dataTable = commonFunction.getSqlData("SELECT convert(varchar, DateBought, 101) AS DateBought, " +
+                "PriceBought, Lots AS  'BoughtLots', convert(varchar, DateSold, 101) AS DateSold, PriceSold, " +
+                "Lots AS 'SoldLots', Commision, Interest, Profit AS 'Profit/Loss' FROM SettlementPositions WHERE valid = 1 and Account_id=" + selectedCustomer["id"]);
+            Dictionary<String, String> settlementPosition = new Dictionary<string, string>();
+            settlementPosition["DateBought"] = "";
+            settlementPosition["PriceBought"] = "";
+            settlementPosition["BoughtLots"] = "";
+            settlementPosition["DateSold"] = "";
+            settlementPosition["PriceSold"] = "";
+            settlementPosition["SoldLots"] = "";
+            settlementPosition["Commision"] = "";
+            settlementPosition["Interest"] = "";
+            settlementPosition["Profit/Loss"] = "";
+            foreach (DataRow row in dataTable.Rows)
+            {
+                settlementPosition["DateBought"] = settlementPosition["DateBought"] + row["DateBought"] + "\n";
+                settlementPosition["PriceBought"] = settlementPosition["PriceBought"] + row["PriceBought"] + "\n";
+                settlementPosition["BoughtLots"] = settlementPosition["BoughtLots"] + row["BoughtLots"] + "\n";
+                settlementPosition["DateSold"] = settlementPosition["DateSold"] + row["DateSold"] + "\n";
+                settlementPosition["PriceSold"] = settlementPosition["PriceSold"] + row["PriceSold"] + "\n";
+                settlementPosition["SoldLots"] = settlementPosition["SoldLots"] + row["SoldLots"] + "\n";
+                settlementPosition["Commision"] = settlementPosition["Commision"] + row["Commision"] + "\n";
+                settlementPosition["Interest"] = settlementPosition["Interest"] + row["Interest"] + "\n";
+                settlementPosition["Profit/Loss"] = settlementPosition["Profit/Loss"] + row["Profit/Loss"] + "\n";
+                totalCommission = totalCommission + Convert.ToInt32(row["Commision"]);
+                totalInterest = totalInterest + Convert.ToInt32(row["Interest"]);
+                totalProfitLoss = totalProfitLoss + Convert.ToInt32(row["Profit/Loss"]);
+            }
+            docx.ReplaceText("<BDATES>", settlementPosition["DateBought"]);
+            docx.ReplaceText("<BPRICES>", settlementPosition["PriceBought"]);
+            docx.ReplaceText("<BLOTSS>", settlementPosition["BoughtLots"]);
+            docx.ReplaceText("<SDATES>", settlementPosition["DateSold"]);
+            docx.ReplaceText("<SPRICES>", settlementPosition["PriceSold"]);
+            docx.ReplaceText("<SLOTSS>", settlementPosition["SoldLots"]);
+            docx.ReplaceText("<INTERESTS>", settlementPosition["Interest"]);
+            docx.ReplaceText("<COMMISSIONS>", settlementPosition["Commision"]);
+            docx.ReplaceText("<P/LS>", settlementPosition["Profit/Loss"]);
+
+
+            dataTable = commonFunction.getSqlData("SELECT convert(varchar, Date, 101) AS Date, Price, Lots, Interest, Commission, ProfitLoss AS 'FP/LO' " +
+                "FROM OpenPosition WHERE valid = 1 and Account_id = " + selectedCustomer["id"]);
+            Dictionary <String, String> openPosition = new Dictionary<string, string>();
+            openPosition["Date"] = "";
+            openPosition["Price"] = "";
+            openPosition["Lots"] = "";
+            openPosition["Interest"] = "";
+            openPosition["Commission"] = "";
+            openPosition["FP/LO"] = "";
+            foreach (DataRow row in dataTable.Rows)
+            {
+                openPosition["Date"] = openPosition["Date"] + row["Date"] + "\n";
+                openPosition["Price"] = openPosition["Price"] + row["Price"] + "\n";
+                openPosition["Lots"] = openPosition["Lots"] + row["Lots"] + "\n";
+                openPosition["Interest"] = openPosition["Interest"] + row["Interest"] + "\n";
+                openPosition["Commission"] = openPosition["Commission"] + row["Commission"] + "\n";
+                openPosition["FP/LO"] = openPosition["FP/LO"] + row["FP/LO"] + "\n";
+                totalFloating = totalFloating + Convert.ToInt32(row["FP/LO"]);
+            }
+            docx.ReplaceText("<DATEO>", openPosition["Date"]);
+            docx.ReplaceText("<PRICEO>", openPosition["Price"]);
+            docx.ReplaceText("<CPRICEO>", closingPrice.ToString());
+            docx.ReplaceText("<LOTSO>", openPosition["Lots"]);
+            docx.ReplaceText("<INTERESTO>", openPosition["Interest"]);
+            docx.ReplaceText("<COMMISSIONO>", openPosition["Commission"]);
+            docx.ReplaceText("<FP/LO>", openPosition["FP/LO"]);
+
+            dataTable = commonFunction.getSqlData("SELECT a.Balance - aa.Deposit + aa.Withdrawal as 'PREVIOUS_BALANCE', a.Balance as 'NEW_BALANCE',aa.Deposit as  'DEPOSIT', " +
+    "a.Balance AS 'EQUITY', aa.Withdrawal AS 'WITHDRAWAL' " +
+    "FROM Account a " +
+    "JOIN(select a.Account_id, sum(a.Deposit) as Deposit, sum(a.Withdrawal) as Withdrawal from(select Account_id, CASE WHEN action = 'Deposit' THEN sum(amount) end as Deposit," +
+    "CASE WHEN action = 'Withdrawal' THEN - sum(amount) end as Withdrawal FROM AccountAction " +
+    "GROUP BY Account_id, action) a Group by a.Account_id) aa on aa.Account_id = a.id " +
+    "WHERE a.id = " + selectedCustomer["id"]);
+            docx.ReplaceText("<DESO>", "");
+            docx.ReplaceText("<DESS>", "");
+            docx.ReplaceText("<PREVIOUS_BALANCE>", dataTable.Rows[0]["PREVIOUS_BALANCE"].ToString());
+            docx.ReplaceText("<NEW_BALANCE>", dataTable.Rows[0]["NEW_BALANCE"].ToString());
+            docx.ReplaceText("<DEPOSIT>", dataTable.Rows[0]["DEPOSIT"].ToString());
+            docx.ReplaceText("<WITHDRAWAL>", dataTable.Rows[0]["WITHDRAWAL"].ToString());
+            docx.ReplaceText("<EQUITY>", dataTable.Rows[0]["EQUITY"].ToString());
+            docx.ReplaceText("<F_P/L>", totalFloating.ToString());
+            docx.ReplaceText("<INTEREST>", totalInterest.ToString());
+            docx.ReplaceText("<REQUIRE>", "0.00");
+            docx.ReplaceText("<COMMISSION>", totalCommission.ToString());
+            docx.ReplaceText("<EFFECTIVE>", "0.00");
+            docx.ReplaceText("<P/L>", totalProfitLoss.ToString());
+
+            docx.SaveAs("output.docx");
+            Process.Start("output.docx");
+            //DocumentModel.Load("tommy2.docx").Save("Document.pdf");
+            //doc.Close();
+        }
+
+        public void prepareSimpleStatement()
+        {
+
         }
     }
 }

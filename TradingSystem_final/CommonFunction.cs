@@ -138,13 +138,20 @@ namespace TradingSystem_final
             {
                 con.Close();
             }
-
         }
 
-        public void changeProfitLoss(Double profitLoss, int id)
+        public void changeOPProfitLoss(int closingPrice, String id)
         {
-            SqlCommand cmd = new SqlCommand("update OpenPosition set ProfitLoss = @ProfitLoss where id = @id", con);
-            cmd.Parameters.AddWithValue("@ProfitLoss", profitLoss);
+            Dictionary<String, Double> config = getRate();
+
+            SqlCommand cmd = new SqlCommand("update OpenPosition " +
+                "set ProfitLoss = (@closingPrice - Price) * needed.ContractSize * needed.ExchangeRate * Lots " +
+                "from( select sum(rate.ContractSize) as ContractSize, " +
+                "sum(rate.ExchangeRate) as ExchangeRate from(select case when name = 'ContractSize' then CONVERT(decimal(10, 5), (CAST(value AS varchar(10)))) end as ContractSize," +
+                "case when name = 'ExchangeRate' then CONVERT(decimal(10, 5), (CAST(value AS varchar(10)))) end as ExchangeRate from RatesSetting where name in ('ContractSize', 'ExchangeRate')  " +
+                ") rate) needed " +
+                "where Account_id = @id", con);
+            cmd.Parameters.AddWithValue("@closingPrice", closingPrice);
             cmd.Parameters.AddWithValue("@id", id);
             try
             {
@@ -299,27 +306,27 @@ namespace TradingSystem_final
                 con.Open();
                 string strCommand = "update dbo.RatesSetting set value = @ExchangeRate where name='ExchangeRate'";
                 SqlCommand cmdUpdate = new SqlCommand(strCommand, con);
-                cmdUpdate.Parameters.AddWithValue("@ExchangeRate", exchangeRate);
+                cmdUpdate.Parameters.AddWithValue("@ExchangeRate", exchangeRate.ToString());
                 cmdUpdate.ExecuteNonQuery();
 
                 strCommand = "update dbo.RatesSetting set value = @InterestRateBuy where name='InterestRateBuy'";
                 cmdUpdate = new SqlCommand(strCommand, con);
-                cmdUpdate.Parameters.AddWithValue("@InterestRateBuy", interestRateBuy);
+                cmdUpdate.Parameters.AddWithValue("@InterestRateBuy", interestRateBuy.ToString());
                 cmdUpdate.ExecuteNonQuery();
 
                 strCommand = "update dbo.RatesSetting set value = @InterestRateSell where name='InterestRateSell'";
                 cmdUpdate = new SqlCommand(strCommand, con);
-                cmdUpdate.Parameters.AddWithValue("@InterestRateSell", interestRateSell);
+                cmdUpdate.Parameters.AddWithValue("@InterestRateSell", interestRateSell.ToString());
                 cmdUpdate.ExecuteNonQuery();
 
                 strCommand = "update dbo.RatesSetting set value = @ContractSize where name='ContractSize'";
                 cmdUpdate = new SqlCommand(strCommand, con);
-                cmdUpdate.Parameters.AddWithValue("@ContractSize", ContractSize);
+                cmdUpdate.Parameters.AddWithValue("@ContractSize", ContractSize.ToString());
                 cmdUpdate.ExecuteNonQuery();
 
                 strCommand = "update dbo.RatesSetting set value = @CommissionRate where name='CommissionRate'";
                 cmdUpdate = new SqlCommand(strCommand, con);
-                cmdUpdate.Parameters.AddWithValue("@CommissionRate", CommissionRate);
+                cmdUpdate.Parameters.AddWithValue("@CommissionRate", CommissionRate.ToString());
                 cmdUpdate.ExecuteNonQuery();
             }
             finally
@@ -411,5 +418,22 @@ namespace TradingSystem_final
             }
         }
 
+        public void depositWithdrawalBalance(String action, int amount, int accountId)
+        {
+            string strCommand = "INSERT INTO dbo.AccountAction (Account_id, Action, Amount) VALUES (@Account_id, @Action, @Amount)";
+            SqlCommand cmdInsert = new SqlCommand(strCommand, con);
+            cmdInsert.Parameters.AddWithValue("@Account_id", Convert.ToInt32(accountId));
+            cmdInsert.Parameters.AddWithValue("@Action", action);
+            cmdInsert.Parameters.AddWithValue("@Amount", Convert.ToInt32(amount));
+            try
+            {
+                con.Open();
+                cmdInsert.ExecuteNonQuery();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
     }
 }

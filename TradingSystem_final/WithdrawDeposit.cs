@@ -27,6 +27,7 @@ namespace TradingSystem_final
             {
                 action = Withdraw.Text;
             }
+            this.action = action;
             
             setData(action, Convert.ToInt32(DepositWithdrawAmount.Text));
             this.DialogResult = DialogResult.OK;
@@ -68,5 +69,7 @@ namespace TradingSystem_final
         {
             return this.amount;
         }
+
+        public String action { get; set; }
     }
 }

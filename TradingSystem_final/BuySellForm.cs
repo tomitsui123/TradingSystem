@@ -103,8 +103,7 @@ namespace TradingSystem_final
 
         private void TxtBoxLots_TextChanged(object sender, EventArgs e)
         {
-            inputLots = Int32.Parse(TxtBoxLots.Text);
-            totalLots = settlementPositionLots + inputLots;
+            totalLots = Int32.Parse(TxtBoxLots.Text);
         }
     }
 }

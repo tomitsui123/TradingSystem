@@ -46,27 +46,20 @@
             this.BtnSettlemenePositionUp = new System.Windows.Forms.Button();
             this.BtnOpenPositionClear = new System.Windows.Forms.Button();
             this.CustomerAccountTable = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.accountNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.balanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.accountBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.database1DataSet3 = new TradingSystem_final.Database1DataSet3();
             this.SettlementPositions = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Account_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lotsDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateBoughtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceBoughtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateSoldDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceSoldDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.commisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.interestDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.profitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OpenPosition_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.settlementPositionsBindingSource5 = new System.Windows.Forms.BindingSource(this.components);
-            this.database1DataSet12 = new TradingSystem_final.Database1DataSet12();
             this.OpenPosition = new System.Windows.Forms.DataGridView();
+            this.asdfToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ratesSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.companyInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.openAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allStatementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.simpleStatementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oneStatementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,13 +71,23 @@
             this.commissionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.openPositionBindingSource5 = new System.Windows.Forms.BindingSource(this.components);
             this.database1DataSet13 = new TradingSystem_final.Database1DataSet13();
-            this.asdfToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ratesSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.companyInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.openAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.allStatementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.idDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lotsDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateBoughtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceBoughtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateSoldDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceSoldDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.commisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.interestDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.profitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.settlementPositionsBindingSource5 = new System.Windows.Forms.BindingSource(this.components);
+            this.database1DataSet12 = new TradingSystem_final.Database1DataSet12();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.accountNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.balanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.accountBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.database1DataSet3 = new TradingSystem_final.Database1DataSet3();
             this.accountBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.database1DataSet = new TradingSystem_final.Database1DataSet();
             this.openPositionBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -121,17 +124,16 @@
             this.settlementPositionsTableAdapter4 = new TradingSystem_final.Database1DataSet11TableAdapters.SettlementPositionsTableAdapter();
             this.settlementPositionsTableAdapter5 = new TradingSystem_final.Database1DataSet12TableAdapters.SettlementPositionsTableAdapter();
             this.openPositionTableAdapter5 = new TradingSystem_final.Database1DataSet13TableAdapters.OpenPositionTableAdapter();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.CustomerAccountTable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.accountBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SettlementPositions)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.settlementPositionsBindingSource5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OpenPosition)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openPositionBindingSource5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet13)).BeginInit();
-            this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.settlementPositionsBindingSource5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accountBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accountBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.openPositionBindingSource)).BeginInit();
@@ -174,6 +176,7 @@
             // 
             // OneStatement
             // 
+            this.OneStatement.Enabled = false;
             this.OneStatement.Location = new System.Drawing.Point(415, 48);
             this.OneStatement.Name = "OneStatement";
             this.OneStatement.Size = new System.Drawing.Size(114, 21);
@@ -332,44 +335,6 @@
             this.CustomerAccountTable.TabIndex = 20;
             this.CustomerAccountTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerAccountTable_CellClick);
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // accountNoDataGridViewTextBoxColumn
-            // 
-            this.accountNoDataGridViewTextBoxColumn.DataPropertyName = "AccountNo";
-            this.accountNoDataGridViewTextBoxColumn.HeaderText = "AccountNo";
-            this.accountNoDataGridViewTextBoxColumn.Name = "accountNoDataGridViewTextBoxColumn";
-            this.accountNoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // balanceDataGridViewTextBoxColumn
-            // 
-            this.balanceDataGridViewTextBoxColumn.DataPropertyName = "Balance";
-            this.balanceDataGridViewTextBoxColumn.HeaderText = "Balance";
-            this.balanceDataGridViewTextBoxColumn.Name = "balanceDataGridViewTextBoxColumn";
-            this.balanceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // accountBindingSource1
-            // 
-            this.accountBindingSource1.DataMember = "Account";
-            this.accountBindingSource1.DataSource = this.database1DataSet3;
-            // 
-            // database1DataSet3
-            // 
-            this.database1DataSet3.DataSetName = "Database1DataSet3";
-            this.database1DataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // SettlementPositions
             // 
             this.SettlementPositions.AllowUserToAddRows = false;
@@ -396,14 +361,6 @@
             this.SettlementPositions.TabIndex = 24;
             this.SettlementPositions.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SettlementPositions_CellClick);
             // 
-            // idDataGridViewTextBoxColumn2
-            // 
-            this.idDataGridViewTextBoxColumn2.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn2.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn2.Name = "idDataGridViewTextBoxColumn2";
-            this.idDataGridViewTextBoxColumn2.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn2.Visible = false;
-            // 
             // Account_id
             // 
             this.Account_id.DataPropertyName = "Account_id";
@@ -412,62 +369,6 @@
             this.Account_id.ReadOnly = true;
             this.Account_id.Visible = false;
             // 
-            // lotsDataGridViewTextBoxColumn1
-            // 
-            this.lotsDataGridViewTextBoxColumn1.DataPropertyName = "Lots";
-            this.lotsDataGridViewTextBoxColumn1.HeaderText = "Lots";
-            this.lotsDataGridViewTextBoxColumn1.Name = "lotsDataGridViewTextBoxColumn1";
-            this.lotsDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dateBoughtDataGridViewTextBoxColumn
-            // 
-            this.dateBoughtDataGridViewTextBoxColumn.DataPropertyName = "DateBought";
-            this.dateBoughtDataGridViewTextBoxColumn.HeaderText = "DateBought";
-            this.dateBoughtDataGridViewTextBoxColumn.Name = "dateBoughtDataGridViewTextBoxColumn";
-            this.dateBoughtDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // priceBoughtDataGridViewTextBoxColumn
-            // 
-            this.priceBoughtDataGridViewTextBoxColumn.DataPropertyName = "PriceBought";
-            this.priceBoughtDataGridViewTextBoxColumn.HeaderText = "PriceBought";
-            this.priceBoughtDataGridViewTextBoxColumn.Name = "priceBoughtDataGridViewTextBoxColumn";
-            this.priceBoughtDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dateSoldDataGridViewTextBoxColumn
-            // 
-            this.dateSoldDataGridViewTextBoxColumn.DataPropertyName = "DateSold";
-            this.dateSoldDataGridViewTextBoxColumn.HeaderText = "DateSold";
-            this.dateSoldDataGridViewTextBoxColumn.Name = "dateSoldDataGridViewTextBoxColumn";
-            this.dateSoldDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // priceSoldDataGridViewTextBoxColumn
-            // 
-            this.priceSoldDataGridViewTextBoxColumn.DataPropertyName = "PriceSold";
-            this.priceSoldDataGridViewTextBoxColumn.HeaderText = "PriceSold";
-            this.priceSoldDataGridViewTextBoxColumn.Name = "priceSoldDataGridViewTextBoxColumn";
-            this.priceSoldDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // commisionDataGridViewTextBoxColumn
-            // 
-            this.commisionDataGridViewTextBoxColumn.DataPropertyName = "Commision";
-            this.commisionDataGridViewTextBoxColumn.HeaderText = "Commision";
-            this.commisionDataGridViewTextBoxColumn.Name = "commisionDataGridViewTextBoxColumn";
-            this.commisionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // interestDataGridViewTextBoxColumn1
-            // 
-            this.interestDataGridViewTextBoxColumn1.DataPropertyName = "Interest";
-            this.interestDataGridViewTextBoxColumn1.HeaderText = "Interest";
-            this.interestDataGridViewTextBoxColumn1.Name = "interestDataGridViewTextBoxColumn1";
-            this.interestDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // profitDataGridViewTextBoxColumn
-            // 
-            this.profitDataGridViewTextBoxColumn.DataPropertyName = "Profit";
-            this.profitDataGridViewTextBoxColumn.HeaderText = "Net Profit";
-            this.profitDataGridViewTextBoxColumn.Name = "profitDataGridViewTextBoxColumn";
-            this.profitDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // OpenPosition_id
             // 
             this.OpenPosition_id.DataPropertyName = "OpenPosition_id";
@@ -475,16 +376,6 @@
             this.OpenPosition_id.Name = "OpenPosition_id";
             this.OpenPosition_id.ReadOnly = true;
             this.OpenPosition_id.Visible = false;
-            // 
-            // settlementPositionsBindingSource5
-            // 
-            this.settlementPositionsBindingSource5.DataMember = "SettlementPositions";
-            this.settlementPositionsBindingSource5.DataSource = this.database1DataSet12;
-            // 
-            // database1DataSet12
-            // 
-            this.database1DataSet12.DataSetName = "Database1DataSet12";
-            this.database1DataSet12.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // OpenPosition
             // 
@@ -509,6 +400,85 @@
             this.OpenPosition.Size = new System.Drawing.Size(528, 139);
             this.OpenPosition.TabIndex = 25;
             this.OpenPosition.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OpenPosition_CellClick);
+            // 
+            // asdfToolStripMenuItem1
+            // 
+            this.asdfToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ratesSettingsToolStripMenuItem,
+            this.companyInformationToolStripMenuItem});
+            this.asdfToolStripMenuItem1.Name = "asdfToolStripMenuItem1";
+            this.asdfToolStripMenuItem1.Size = new System.Drawing.Size(64, 20);
+            this.asdfToolStripMenuItem1.Text = "Options";
+            // 
+            // ratesSettingsToolStripMenuItem
+            // 
+            this.ratesSettingsToolStripMenuItem.Name = "ratesSettingsToolStripMenuItem";
+            this.ratesSettingsToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.ratesSettingsToolStripMenuItem.Text = "Rates Settings";
+            this.ratesSettingsToolStripMenuItem.Click += new System.EventHandler(this.ratesSettingsToolStripMenuItem_Click);
+            // 
+            // companyInformationToolStripMenuItem
+            // 
+            this.companyInformationToolStripMenuItem.Name = "companyInformationToolStripMenuItem";
+            this.companyInformationToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.companyInformationToolStripMenuItem.Text = "Company Information";
+            this.companyInformationToolStripMenuItem.Click += new System.EventHandler(this.companyInformationToolStripMenuItem_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openAccountToolStripMenuItem,
+            this.closeAccountToolStripMenuItem,
+            this.allStatementsToolStripMenuItem,
+            this.asdfToolStripMenuItem1});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1148, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // openAccountToolStripMenuItem
+            // 
+            this.openAccountToolStripMenuItem.Name = "openAccountToolStripMenuItem";
+            this.openAccountToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
+            this.openAccountToolStripMenuItem.Text = "Open Account";
+            this.openAccountToolStripMenuItem.Click += new System.EventHandler(this.openAccountToolStripMenuItem_Click);
+            // 
+            // closeAccountToolStripMenuItem
+            // 
+            this.closeAccountToolStripMenuItem.Enabled = false;
+            this.closeAccountToolStripMenuItem.Name = "closeAccountToolStripMenuItem";
+            this.closeAccountToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
+            this.closeAccountToolStripMenuItem.Text = "Close Account";
+            this.closeAccountToolStripMenuItem.Click += new System.EventHandler(this.closeAccountToolStripMenuItem_Click);
+            // 
+            // allStatementsToolStripMenuItem
+            // 
+            this.allStatementsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.simpleStatementToolStripMenuItem,
+            this.oneStatementToolStripMenuItem});
+            this.allStatementsToolStripMenuItem.Name = "allStatementsToolStripMenuItem";
+            this.allStatementsToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
+            this.allStatementsToolStripMenuItem.Text = "All Statements";
+            // 
+            // simpleStatementToolStripMenuItem
+            // 
+            this.simpleStatementToolStripMenuItem.Name = "simpleStatementToolStripMenuItem";
+            this.simpleStatementToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.simpleStatementToolStripMenuItem.Text = "Simple Statement";
+            this.simpleStatementToolStripMenuItem.Click += new System.EventHandler(this.simpleStatementToolStripMenuItem_Click);
+            // 
+            // oneStatementToolStripMenuItem
+            // 
+            this.oneStatementToolStripMenuItem.Name = "oneStatementToolStripMenuItem";
+            this.oneStatementToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.oneStatementToolStripMenuItem.Text = "One Statement";
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // idDataGridViewTextBoxColumn1
             // 
@@ -593,61 +563,117 @@
             this.database1DataSet13.DataSetName = "Database1DataSet13";
             this.database1DataSet13.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // asdfToolStripMenuItem1
+            // idDataGridViewTextBoxColumn2
             // 
-            this.asdfToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ratesSettingsToolStripMenuItem,
-            this.companyInformationToolStripMenuItem});
-            this.asdfToolStripMenuItem1.Name = "asdfToolStripMenuItem1";
-            this.asdfToolStripMenuItem1.Size = new System.Drawing.Size(64, 20);
-            this.asdfToolStripMenuItem1.Text = "Options";
+            this.idDataGridViewTextBoxColumn2.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn2.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn2.Name = "idDataGridViewTextBoxColumn2";
+            this.idDataGridViewTextBoxColumn2.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn2.Visible = false;
             // 
-            // ratesSettingsToolStripMenuItem
+            // lotsDataGridViewTextBoxColumn1
             // 
-            this.ratesSettingsToolStripMenuItem.Name = "ratesSettingsToolStripMenuItem";
-            this.ratesSettingsToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.ratesSettingsToolStripMenuItem.Text = "Rates Settings";
-            this.ratesSettingsToolStripMenuItem.Click += new System.EventHandler(this.ratesSettingsToolStripMenuItem_Click);
+            this.lotsDataGridViewTextBoxColumn1.DataPropertyName = "Lots";
+            this.lotsDataGridViewTextBoxColumn1.HeaderText = "Lots";
+            this.lotsDataGridViewTextBoxColumn1.Name = "lotsDataGridViewTextBoxColumn1";
+            this.lotsDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // companyInformationToolStripMenuItem
+            // dateBoughtDataGridViewTextBoxColumn
             // 
-            this.companyInformationToolStripMenuItem.Name = "companyInformationToolStripMenuItem";
-            this.companyInformationToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.companyInformationToolStripMenuItem.Text = "Company Information";
-            this.companyInformationToolStripMenuItem.Click += new System.EventHandler(this.companyInformationToolStripMenuItem_Click);
+            this.dateBoughtDataGridViewTextBoxColumn.DataPropertyName = "DateBought";
+            this.dateBoughtDataGridViewTextBoxColumn.HeaderText = "DateBought";
+            this.dateBoughtDataGridViewTextBoxColumn.Name = "dateBoughtDataGridViewTextBoxColumn";
+            this.dateBoughtDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // menuStrip1
+            // priceBoughtDataGridViewTextBoxColumn
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openAccountToolStripMenuItem,
-            this.closeAccountToolStripMenuItem,
-            this.allStatementsToolStripMenuItem,
-            this.asdfToolStripMenuItem1});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1148, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            this.priceBoughtDataGridViewTextBoxColumn.DataPropertyName = "PriceBought";
+            this.priceBoughtDataGridViewTextBoxColumn.HeaderText = "PriceBought";
+            this.priceBoughtDataGridViewTextBoxColumn.Name = "priceBoughtDataGridViewTextBoxColumn";
+            this.priceBoughtDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // openAccountToolStripMenuItem
+            // dateSoldDataGridViewTextBoxColumn
             // 
-            this.openAccountToolStripMenuItem.Name = "openAccountToolStripMenuItem";
-            this.openAccountToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
-            this.openAccountToolStripMenuItem.Text = "Open Account";
-            this.openAccountToolStripMenuItem.Click += new System.EventHandler(this.openAccountToolStripMenuItem_Click);
+            this.dateSoldDataGridViewTextBoxColumn.DataPropertyName = "DateSold";
+            this.dateSoldDataGridViewTextBoxColumn.HeaderText = "DateSold";
+            this.dateSoldDataGridViewTextBoxColumn.Name = "dateSoldDataGridViewTextBoxColumn";
+            this.dateSoldDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // closeAccountToolStripMenuItem
+            // priceSoldDataGridViewTextBoxColumn
             // 
-            this.closeAccountToolStripMenuItem.Name = "closeAccountToolStripMenuItem";
-            this.closeAccountToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
-            this.closeAccountToolStripMenuItem.Text = "Close Account";
-            this.closeAccountToolStripMenuItem.Click += new System.EventHandler(this.closeAccountToolStripMenuItem_Click);
+            this.priceSoldDataGridViewTextBoxColumn.DataPropertyName = "PriceSold";
+            this.priceSoldDataGridViewTextBoxColumn.HeaderText = "PriceSold";
+            this.priceSoldDataGridViewTextBoxColumn.Name = "priceSoldDataGridViewTextBoxColumn";
+            this.priceSoldDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // allStatementsToolStripMenuItem
+            // commisionDataGridViewTextBoxColumn
             // 
-            this.allStatementsToolStripMenuItem.Name = "allStatementsToolStripMenuItem";
-            this.allStatementsToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
-            this.allStatementsToolStripMenuItem.Text = "All Statements";
+            this.commisionDataGridViewTextBoxColumn.DataPropertyName = "Commision";
+            this.commisionDataGridViewTextBoxColumn.HeaderText = "Commision";
+            this.commisionDataGridViewTextBoxColumn.Name = "commisionDataGridViewTextBoxColumn";
+            this.commisionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // interestDataGridViewTextBoxColumn1
+            // 
+            this.interestDataGridViewTextBoxColumn1.DataPropertyName = "Interest";
+            this.interestDataGridViewTextBoxColumn1.HeaderText = "Interest";
+            this.interestDataGridViewTextBoxColumn1.Name = "interestDataGridViewTextBoxColumn1";
+            this.interestDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // profitDataGridViewTextBoxColumn
+            // 
+            this.profitDataGridViewTextBoxColumn.DataPropertyName = "Profit";
+            this.profitDataGridViewTextBoxColumn.HeaderText = "Net Profit";
+            this.profitDataGridViewTextBoxColumn.Name = "profitDataGridViewTextBoxColumn";
+            this.profitDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // settlementPositionsBindingSource5
+            // 
+            this.settlementPositionsBindingSource5.DataMember = "SettlementPositions";
+            this.settlementPositionsBindingSource5.DataSource = this.database1DataSet12;
+            // 
+            // database1DataSet12
+            // 
+            this.database1DataSet12.DataSetName = "Database1DataSet12";
+            this.database1DataSet12.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // accountNoDataGridViewTextBoxColumn
+            // 
+            this.accountNoDataGridViewTextBoxColumn.DataPropertyName = "AccountNo";
+            this.accountNoDataGridViewTextBoxColumn.HeaderText = "AccountNo";
+            this.accountNoDataGridViewTextBoxColumn.Name = "accountNoDataGridViewTextBoxColumn";
+            this.accountNoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // balanceDataGridViewTextBoxColumn
+            // 
+            this.balanceDataGridViewTextBoxColumn.DataPropertyName = "Balance";
+            this.balanceDataGridViewTextBoxColumn.HeaderText = "Balance";
+            this.balanceDataGridViewTextBoxColumn.Name = "balanceDataGridViewTextBoxColumn";
+            this.balanceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // accountBindingSource1
+            // 
+            this.accountBindingSource1.DataMember = "Account";
+            this.accountBindingSource1.DataSource = this.database1DataSet3;
+            // 
+            // database1DataSet3
+            // 
+            this.database1DataSet3.DataSetName = "Database1DataSet3";
+            this.database1DataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // accountBindingSource
             // 
@@ -815,12 +841,6 @@
             // 
             this.openPositionTableAdapter5.ClearBeforeFill = true;
             // 
-            // imageList1
-            // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -850,16 +870,16 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.CustomerAccountTable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.accountBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SettlementPositions)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.settlementPositionsBindingSource5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.OpenPosition)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.openPositionBindingSource5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet13)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.openPositionBindingSource5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.settlementPositionsBindingSource5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accountBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.accountBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.openPositionBindingSource)).EndInit();
@@ -981,6 +1001,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn interestDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn profitDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn OpenPosition_id;
+        private System.Windows.Forms.ToolStripMenuItem simpleStatementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem oneStatementToolStripMenuItem;
     }
 }
 
